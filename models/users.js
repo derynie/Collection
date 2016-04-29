@@ -6,7 +6,7 @@ function REST_ROUTER(router,connection,md5) {
 
 REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     router.get("/",function(req,res){
-//        res.json({"Message" : "Hello World !"});
+//        res.json({"Message" : "Hello World !"});                                                                                                                                                                                     
     });
 
     router.post("/users",function(req,res){
@@ -20,7 +20,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
                 res.json({"Error" : false, "Message" : "User Added !"});
             }
         });
-	console.log(query);
+        console.log(query);
     });
 
     router.get("/users",function(req,res){
@@ -34,7 +34,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
                 res.json({"Error" : false, "Message" : "Success", "Users" : rows});
             }
         });
-	console.log(query);
+        console.log(query);
     });
 
     router.get("/users/:Id",function(req,res){
@@ -48,7 +48,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
                 res.json({"Error" : false, "Message" : "Success", "Users" : rows});
             }
         });
-	console.log(query);
+        console.log(query);
     });
 
     router.put("/users",function(req,res){
@@ -62,7 +62,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
                 res.json({"Error" : false, "Message" : "Updated the password for email "+req.body.email});
             }
         });
-	console.log(query);
+        console.log(query);
     });
 
     router.delete("/users/:email",function(req,res){
@@ -76,7 +76,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
                 res.json({"Error" : false, "Message" : "Deleted the user with email "+req.params.email});
             }
         });
-	console.log(query);
+        console.log(query);
     });
 }
 
