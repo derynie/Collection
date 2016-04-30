@@ -51,9 +51,9 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5, secretKey
 	console.log(query);
     });
 
-    router.get("/animes/:Id", function(req, res) {
+    router.get("/animes/:id", function(req, res) {
 	var query = "SELECT * from Anime WHERE Id = ?";
-	var table = [req.params.Id];
+	var table = [req.params.id];
 	query = mysql.format(query, table);
 	connection.query(query, function(err, rows) {
 	    if (err) {

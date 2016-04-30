@@ -1,7 +1,8 @@
 var mysql = require("mysql");
-var uuid = require('node-uuid')
+//var uuid = require('node-uuid')
 var nJwt = require('njwt');
-var secretKey = uuid.v4();
+//var secretKey = uuid.v4();
+var path    = require("path");
 
 function REST_ROUTER(router,connection,md5, secretKey) {
     var self = this;
@@ -10,7 +11,7 @@ function REST_ROUTER(router,connection,md5, secretKey) {
 
 REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
     router.get("/",function(req,res){
-//        res.json({"Message" : "Hello World !"});
+	res.sendFile(path.join(__dirname+'../../../DOC/apidoc/index.html'));
     });
 
     router.post("/users",function(req,res){
@@ -105,6 +106,19 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
 	});
     });
 
+    router.get("/users/:id/animes", function(req, res) {
+	var query = "SELECT A.Title as title, A.Description as description, A.IsFinish as isFinish, A.NbTotal as nbTotal, A.MangaId as mangaId FROM Anime AS A, User AS U, Link_Anime_User AS L WHERE L.UserId = U.Id AND U.Id = ?"
+	var table = [parseInt(req.params.id)];
+	query = mysql.format(query, table);
+	connection.query(query, function(err, rows) {
+	    if (err) {
+		res.json({"Error" : true, "Message" : "Error exucuting MySQL query"});
+	    }
+	    else {
+		res.json({"Error" : false, "Message" : "Success", "Animes_of_user" : rows});
+	    }
+	});
+    });
 
     router.post('/login', function(req, res) {
 
