@@ -3,12 +3,12 @@ var uuid = require('node-uuid')
 var nJwt = require('njwt');
 var secretKey = uuid.v4();
 
-function REST_ROUTER(router,connection,md5) {
+function REST_ROUTER(router,connection,md5, secretKey) {
     var self = this;
-    self.handleRoutes(router,connection,md5);
+    self.handleRoutes(router,connection,md5, secretKey);
 }
 
-REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
+REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
     router.get("/",function(req,res){
 //        res.json({"Message" : "Hello World !"});
     });
@@ -49,9 +49,9 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         console.log(query);
     });
 
-    router.get("/users/:Id",function(req,res){
+    router.get("/users/:id",function(req,res){
         var query = "SELECT * FROM User WHERE Id=?";
-        var table = [req.params.Id];
+        var table = [req.params.id];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
@@ -90,7 +90,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
             if(err){
                 res.json({"Error": true, "Message" : "Your token is invalid"});
             }else{
-		var query = "DELETE from User WHERE email=?";
+		var query = "DELETE from User WHERE Email=?";
 		var table = [req.params.email];
 		query = mysql.format(query,table);
 		connection.query(query,function(err,rows){

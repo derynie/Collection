@@ -4,6 +4,9 @@ var bodyParser  = require("body-parser");
 var md5 = require('MD5');
 var rest = require("./controllers/users.js");
 var app  = express();
+var anime = require("./controllers/anime.js");
+var uuid = require('node-uuid');
+var secretKey = uuid.v4();
 
 function REST(){
     var self = this;
@@ -38,7 +41,8 @@ REST.prototype.configureExpress = function(connection) {
     app.use(bodyParser.json());
     var router = express.Router();
     app.use('/api', router);
-    var rest_router = new rest(router,connection,md5);
+    var rest_router = new rest(router,connection,md5, secretKey);
+    var anime_router = new anime(router, connection, md5, secretKey);
     self.startServer();
 }
 
