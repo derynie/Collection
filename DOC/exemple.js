@@ -106,7 +106,6 @@
  * @apiName Create an User
  * @apiGroup 2) User
  *
- * @apiParam {String} _token Token provide by the API.
  * @apiParam {String} name Name of the User.
  * @apiParam {String} email Email of the User.
  * @apiParam {String} password Password of the User.

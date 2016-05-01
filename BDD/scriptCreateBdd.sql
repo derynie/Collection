@@ -3,7 +3,8 @@ CREATE TABLE User
     Id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Name TEXT NOT NULL,
     Email VARCHAR(200) NOT NULL,
-    Password TEXT NOT NULL
+    Password TEXT NOT NULL,
+    Token TEXT
 );
 CREATE UNIQUE INDEX User_Email_uindex ON User (Email);
 CREATE UNIQUE INDEX User_Id_uindex ON User (Id);

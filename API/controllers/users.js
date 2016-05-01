@@ -1,8 +1,6 @@
 var mysql = require("mysql");
-//var uuid = require('node-uuid')
 var nJwt = require('njwt');
-//var secretKey = uuid.v4();
-var path    = require("path");
+var utils = require('../utils/utils.js');
 
 function REST_ROUTER(router,connection,md5, secretKey) {
     var self = this;
@@ -15,27 +13,19 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
     });
 
     router.post("/users",function(req,res){
-	var token = req.body._token;
-	
-	nJwt.verify(token,secretKey,function(err,token){
-	    if(err){
-		res.json({"Error": true, "Message" : "Your token is invalid"});
-	    }else{
-		var query = "INSERT INTO User(Name, Email, Password) VALUES (?,?,?)";
-		var table = [req.body.name, req.body.email, md5(req.body.password)];
-		query = mysql.format(query,table);
-		connection.query(query,function(err,rows){
-		    if(err) {
-			res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-		    } else {
-			res.json({"Error" : false, "Message" : "User Added !"});
-		    }
-		});
-		console.log(query);
+	var query = "INSERT INTO User(Name, Email, Password) VALUES (?,?,?)";
+	var table = [req.body.name, req.body.email, md5(req.body.password)];
+	query = mysql.format(query,table);
+	connection.query(query,function(err,rows){
+	    if(err) {
+		res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+	    } else {
+		res.json({"Error" : false, "Message" : "User Added !"});
 	    }
 	});
+	console.log(query);
     });
-
+    
     router.get("/users",function(req,res){
         var query = "SELECT * FROM User";
         var table = ["user_login"];
@@ -65,26 +55,36 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
     });
 
     router.put("/users",function(req,res){
-	var token = req.body._token;
-	nJwt.verify(token,secretKey,function(err,token){
-            if(err){
-                res.json({"Error": true, "Message" : "Your token is invalid"});
-            }else{
-		var query = "UPDATE User SET password = ? WHERE email = ?";
-		var table = [md5(req.body.password), req.body.email];
-		query = mysql.format(query,table);
-		connection.query(query,function(err,rows){
-		    if(err) {
-			res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-		    } else {
-			res.json({"Error" : false, "Message" : "Updated the password for email "+req.body.email});
-		    }
-		});
-		console.log(query);
+	var tokenBdd = utils.getToken(connection, req.body.id);
+	var tokenBody = req.body._token;
+	console.log("tokenBdd = " + tokenBdd);
+	console.log("TokenBody = " + tokenBody)
+	console.log(tokenBdd === tokenBody);
+	if (tokenBdd === tokenBody)
+	{
+	    nJwt.verify(token,secretKey,function(err,token){
+		if(err){
+                    res.json({"Error": true, "Message" : "Your token is invalid"});
+		}else{
+		    var query = "UPDATE User SET Password = ? WHERE Id = ?";
+		    var table = [md5(req.body.password), req.body.id];
+		    query = mysql.format(query,table);
+		    connection.query(query,function(err,rows){
+			if(err) {
+			    res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+			} else {
+			    res.json({"Error" : false, "Message" : "Updated the password for email "+req.body.email});
+			}
+		    });
+		    console.log(query);
+		}
+	    });
+	}
+	else {
+	    res.json({"Error" : true, "Message" : "Your Token is invalid."})
 	    }
-	});
     });
-
+    
     router.delete("/users/:email",function(req,res){
 	var token = req.body._token;
 	nJwt.verify(token,secretKey,function(err,token){
@@ -135,10 +135,22 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
 			sub: rows[0].Id,
 			iss: 'http://localhost:3000'
 		    }
-		    
+		    var User = rows[0];
 		    var jwt = nJwt.create(claims,secretKey);
 		    var token = jwt.compact();
-		    res.json({"Error" : false, "Message" : "You are connected.", "Token" : token});
+		    var queryToken = "UPDATE User SET Token = ? WHERE Id = " + rows[0].Id
+		    var tableToken = [token];
+		    queryToken = mysql.format(queryToken, tableToken);
+		    connection.query(queryToken, function(err, rows) {
+			if (err) {
+			    res.json({"Error": true, "Message" : "Error while created your API token."});
+			}
+			else {
+			    User.Token = token;
+			    res.json({"Error" : false, "Message" : "You are connected.", "User" : User});
+			}
+			console.log(queryToken);
+		    });
 		}
 		else {
 		    res.json({"Error" : true, "Message" : "Didn't find your account"});
