@@ -78,28 +78,35 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
 		});
 	    }
 	    else {
-		res.json({"Error" : true, "Message" : "Your Token is invalid."})
+		res.json({"Error" : true, "Message" : "Your Token is invalid."});
 	    }
 	});	
     });
     
-    router.delete("/users/:email",function(req,res){
-	var token = req.body._token;
-	nJwt.verify(token,secretKey,function(err,token){
-            if(err){
-                res.json({"Error": true, "Message" : "Your token is invalid"});
-            }else{
-		var query = "DELETE from User WHERE Email=?";
-		var table = [req.params.email];
-		query = mysql.format(query,table);
-		connection.query(query,function(err,rows){
-		    if(err) {
-			res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-		    } else {
-			res.json({"Error" : false, "Message" : "Deleted the user with email "+req.params.email});
+    router.delete("/users/:id",function(req,res){
+	utils.getToken(connection, req.params.id, function(response) {
+	    var tokenBody = req.body._token;
+	    if (response === tokenBody) {
+		nJwt.verify(response,secretKey,function(err,token){
+		    if(err){
+			res.json({"Error": true, "Message" : "Your token is invalid"});
+		    }else{
+			var query = "DELETE from User WHERE Id = ?";
+			var table = [req.params.id];
+			query = mysql.format(query,table);
+			connection.query(query,function(err,rows){
+			    if(err) {
+				res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+			    } else {
+				res.json({"Error" : false, "Message" : "Deleted the user with id "+req.params.id});
+			    }
+			});
+			console.log(query);
 		    }
 		});
-		console.log(query);
+	    }
+	    else {
+		res.json({"Error" : true, "Message" : "Your Token is invalid."});
 	    }
 	});
     });

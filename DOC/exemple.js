@@ -25,7 +25,13 @@
  *    {
  *      "Error": false,
  *      "Message": "You are connected.",
- *      "Token": "Some token"
+ *      "User": {
+ *        "Id": 2 ,
+ *        "Name": "A name",
+ *        "Email": "Someone@gmail.com",
+ *        "Password": "A password",
+ *        "Token": "A token"
+ *      }
  *    }
  *
  * @apiError UserNotFound The user wasn't found
@@ -164,12 +170,11 @@
  */
 
 /**
- * @api {delete} /users/:email 5) Delete an User
+ * @api {delete} /users/:id 5) Delete an User
  * @apiName Delete an User
  * @apiGroup 2) User
  *
  * @apiParam {String} _token Token provide by the API.
- * @apiParam {String} email Email of the User.
  *
  * @apiSuccess {Boolean} Error State of the request.
  * @apiSuccess {String} Message Message of the request.
@@ -177,7 +182,7 @@
  * @apiSuccessExample Success-Response:
  *  {
  *    "Error": false,
- *    "Message": "Deleted the user with email somebody@gmail.com"
+ *    "Message": "Deleted the user with id someId"
  *  }
  *
  * @apiError UserNotFound The id of the User was not found.
@@ -310,6 +315,7 @@
  * @apiGroup 3) Anime
  *
  * @apiParam {String} _token Token provide by the API.
+ * @apiParam {Number} userId Id of the User.
  * @apiParam {String} title Title of the Anime.
  * @apiParam {String} description Description of the Anime.
  * @apiParam {Boolean} isFinish If the Anime is finish.
@@ -341,6 +347,7 @@
  * @apiGroup 3) Anime
  *
  * @apiParam {String} _token Token provide by the API.
+ * @apiParam {Number} userId Id of the User.
  * @apiParam {Number} id Id of the Anime.
  * @apiParam {String} title (Optional) Title of the Anime.
  * @apiParam {String} description (Optional) Description of the Anime.
@@ -373,7 +380,7 @@
  * @apiGroup 3) Anime
  *
  * @apiParam {String} _token Token provide by the API.
- * @apiParam {Number} id Id of the Anime.
+ * @apiParam {Number} userId Id of the User.
  *
  * @apiSuccess {Boolean} Error State of the request.
  * @apiSuccess {String} Message Message of the request.
