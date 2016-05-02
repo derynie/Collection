@@ -1,6 +1,7 @@
 var mysql = require("mysql");
 var nJwt = require('njwt');
 var utils = require('../utils/utils.js');
+var path = require("path");
 
 function REST_ROUTER(router,connection,md5, secretKey) {
     var self = this;

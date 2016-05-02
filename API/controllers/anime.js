@@ -114,7 +114,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5, secretKey
 	utils.getToken(connection, req.body.userId, function(response) {
 	    var tokenBody = req.body._token;
 	    if (response === tokenBody) {
-		nJwt.verify(token, secretKey, function(err,token){
+		nJwt.verify(response, secretKey, function(err,token){
 		    if(err) {
 			res.json({"Error": true, "Message" : "Your token is invalid"});
 		    } else {
