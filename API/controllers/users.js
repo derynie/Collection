@@ -55,34 +55,32 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
     });
 
     router.put("/users",function(req,res){
-	var tokenBdd = utils.getToken(connection, req.body.id);
-	var tokenBody = req.body._token;
-	console.log("tokenBdd = " + tokenBdd);
-	console.log("TokenBody = " + tokenBody)
-	console.log(tokenBdd === tokenBody);
-	if (tokenBdd === tokenBody)
-	{
-	    nJwt.verify(token,secretKey,function(err,token){
-		if(err){
-                    res.json({"Error": true, "Message" : "Your token is invalid"});
-		}else{
-		    var query = "UPDATE User SET Password = ? WHERE Id = ?";
-		    var table = [md5(req.body.password), req.body.id];
-		    query = mysql.format(query,table);
-		    connection.query(query,function(err,rows){
-			if(err) {
-			    res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-			} else {
-			    res.json({"Error" : false, "Message" : "Updated the password for email "+req.body.email});
-			}
-		    });
-		    console.log(query);
-		}
-	    });
-	}
-	else {
-	    res.json({"Error" : true, "Message" : "Your Token is invalid."})
+	utils.getToken(connection, req.body.id, function(response) {
+	    var tokenBody = req.body._token;
+	    if (response === tokenBody)
+	    {
+		nJwt.verify(response,secretKey,function(err,token){
+		    if(err){
+			res.json({"Error": true, "Message" : "Your token is invalid"});
+		    }else{
+			var query = "UPDATE User SET Password = ? WHERE Id = ?";
+			var table = [md5(req.body.password), req.body.id];
+			query = mysql.format(query,table);
+			connection.query(query,function(err,rows){
+			    if(err) {
+				res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+			    } else {
+				res.json({"Error" : false, "Message" : "Updated the password for id "+req.body.id});
+			    }
+			});
+			console.log(query);
+		    }
+		});
 	    }
+	    else {
+		res.json({"Error" : true, "Message" : "Your Token is invalid."})
+	    }
+	});	
     });
     
     router.delete("/users/:email",function(req,res){

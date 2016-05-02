@@ -18,17 +18,19 @@ exports.toString = function(string)
     return string;
 }
 
-exports.getToken = function(connection, id)
-{
+var getToken = function(connection, id, callback) {
     var query = "SELECT Token FROM User WHERE Id = " + parseInt(id);
     query = mysql.format(query, null);
     connection.query(query, function(err, rows) {
 	if (err) {
-	    return null;
+	    return callback(null);
 	}
 	else {
-	    console.log("test1 = " + rows[0].Token);
-	    return rows[0].Token;
+	    return callback(rows[0].Token);
 	}
     });
 }
+
+
+
+exports.getToken = getToken;

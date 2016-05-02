@@ -14,7 +14,12 @@
  *
  * @apiSuccess {Boolean} Error State of the request.
  * @apiSuccess {String} Message Message of the request.
- * @apiSuccess {String} Token Token of the API.
+ * @apiSuccess {Object} Token Token of the API.
+ * @apiSuccess {Number} Id Id of the User.
+ * @apiSuccess {String} Name Name of the User.
+ * @apiSuccess {String} Email Email of the User.
+ * @apiSuccess {String} Password Password of the User.
+ * @apiSuccess {String} Token Token provide by the API.
  *
  * @apiSuccessExample Success-Response:
  *    {
@@ -137,7 +142,7 @@
  *
  * @apiParam {String} _token Token provide by the API.
  * @apiParam {String} password New password for the User.
- * @apiParam {String} email Email of the User
+ * @apiParam {String} id Id of the User
  *
  * @apiSuccess {Boolean} Error State of the request.
  * @apiSuccess {String} Message Message of the request.
