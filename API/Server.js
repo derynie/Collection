@@ -2,9 +2,15 @@ var express = require("express");
 var mysql   = require("mysql");
 var bodyParser  = require("body-parser");
 var md5 = require('MD5');
-var rest = require("./controllers/users.js");
 var app  = express();
+
+var animeItem = require("./controllers/animeItem.js");
 var anime = require("./controllers/anime.js");
+var movie = require("./controllers/movie.js");
+var userAnimeItem = require("./controllers/user_animeItem.js");
+var userAnime = require("./controllers/user_anime.js");
+var user = require("./controllers/user.js");
+
 var uuid = require('node-uuid');
 var secretKey = uuid.v4();
 
@@ -41,8 +47,12 @@ REST.prototype.configureExpress = function(connection) {
     app.use(bodyParser.json());
     var router = express.Router();
     app.use('/api', router);
-    var rest_router = new rest(router,connection,md5, secretKey);
+    var user_router = new user(router,connection,md5, secretKey);
     var anime_router = new anime(router, connection, md5, secretKey);
+    var animeItem_router = new animeItem(router, connection, md5, secretKey);
+    var movie_router = new movie(router, connection, md5, secretKey);
+    var userAnimeItem_router = new userAnimeItem(router, connection, md5, secretKey);
+    var userAnime_router = new userAnime(router, connection, md5, secretKey);
     self.startServer();
 }
 

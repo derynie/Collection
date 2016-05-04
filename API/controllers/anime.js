@@ -11,7 +11,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5, secretKey
 
     router.post("/animes", function(req, res) {
 	utils.getToken(connection, req.body.userId, function(response) {
-	    var tokenBody = req.body._token;
+	    var tokenBody = req.headers._token;
 	    if (response === tokenBody) {
 		nJwt.verify(response,secretKey,function(err,token){
 		    if(err){
@@ -75,14 +75,14 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5, secretKey
 
     router.put("/animes", function(req, res) {
 	utils.getToken(connection, req.body.userId, function(response) {
-	    var tokenBody = req.body._token;
+	    var tokenBody = req.headers._token;
 	    if (response === tokenBody) {
 		nJwt.verify(response, secretKey, function(err,token){
 		    if(err) {
 			res.json({"Error": true, "Message" : "Your token is invalid"});
 		    }
 		    else {
-			var query = "UPDATE Anime SET"
+			var query = "UPDATE Anime SET";
 			if (req.body.title) {query = query + " Title = " + utils.toString(req.body.title) + ",";}
 			if (req.body.description) {query = query + " Description = " + utils.toString(req.body.description) + ",";}
 			if (req.body.isFinish) {query = query + " IsFinish = " + Boolean(req.body.isFinish) + ","};
@@ -90,7 +90,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5, secretKey
 			if (req.body.mangaId) {query = query + " MangaId = " + utils.parseIntAndNull(req.body.mangaId) + ","};
 			query = query.substring(0, query.length - 1);
 			query = query + " WHERE Id = ?";
-			table = [parseInt(req.body.id)];
+			var table = [parseInt(req.body.id)];
 			query = mysql.format(query, table);
 			connection.query(query, function(err, rows) {
 			    if (err) {
@@ -112,13 +112,13 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5, secretKey
 
     router.delete("/animes/:id", function(req, res) {
 	utils.getToken(connection, req.body.userId, function(response) {
-	    var tokenBody = req.body._token;
+	    var tokenBody = req.headers._token;
 	    if (response === tokenBody) {
 		nJwt.verify(response, secretKey, function(err,token){
 		    if(err) {
 			res.json({"Error": true, "Message" : "Your token is invalid"});
 		    } else {
-			var query = "DELETE from Anime WHERE Id = ?"
+			var query = "DELETE from Anime WHERE Id = ?";
 			var table = [parseInt(req.params.id)];
 			query = mysql.format(query, table);
 			connection.query(query, function(err, rows) {
@@ -134,6 +134,20 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5, secretKey
 	    }
 	    else {
 		res.json({"Error" : true, "Message" : "Your Token is invalid."});
+	    }
+	});
+    });
+
+    router.get("/animes/:id/animeItems", function(req, res) {
+	var query = "SELECT A.Title as AnimeTitle, AI.Title as ItemTitle, AI.Number as Number, A.NbTotal as NbTotal, AI.Watch, AI.Own FROM Anime_Item as AI, Anime as A WHERE A.Id = AI.AnimeId and AI.AnimeId = ?";
+	var table = [parseInt(req.params.id)];
+	query = mysql.format(query, table);
+	connection.query(query, function(err, rows) {
+	    if (err) {
+		res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+	    }
+	    else {
+		res.json({"Error": false, "Message": "Success", "AnimeItems": rows});
 	    }
 	});
     });

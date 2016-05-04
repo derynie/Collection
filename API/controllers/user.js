@@ -9,6 +9,7 @@ function REST_ROUTER(router,connection,md5, secretKey) {
 }
 
 REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
+
     router.get("/",function(req,res){
 	res.sendFile(path.join(__dirname+'../../../DOC/apidoc/index.html'));
     });
@@ -57,7 +58,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
 
     router.put("/users",function(req,res){
 	utils.getToken(connection, req.body.id, function(response) {
-	    var tokenBody = req.body._token;
+	    var tokenBody = req.headers._token;
 	    if (response === tokenBody)
 	    {
 		nJwt.verify(response,secretKey,function(err,token){
@@ -86,7 +87,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
     
     router.delete("/users/:id",function(req,res){
 	utils.getToken(connection, req.params.id, function(response) {
-	    var tokenBody = req.body._token;
+	    var tokenBody = req.headers._token;
 	    if (response === tokenBody) {
 		nJwt.verify(response,secretKey,function(err,token){
 		    if(err){
@@ -112,22 +113,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5, secretKey) {
 	});
     });
 
-    router.get("/users/:id/animes", function(req, res) {
-	var query = "SELECT A.Title as title, A.Description as description, A.IsFinish as isFinish, A.NbTotal as nbTotal, A.MangaId as mangaId FROM Anime AS A, User AS U, Link_Anime_User AS L WHERE L.UserId = U.Id AND U.Id = ?"
-	var table = [parseInt(req.params.id)];
-	query = mysql.format(query, table);
-	connection.query(query, function(err, rows) {
-	    if (err) {
-		res.json({"Error" : true, "Message" : "Error exucuting MySQL query"});
-	    }
-	    else {
-		res.json({"Error" : false, "Message" : "Success", "Animes_of_user" : rows});
-	    }
-	});
-    });
-
     router.post('/login', function(req, res) {
-
 	var query = "SELECT * FROM User WHERE email = ? and password = ?"
 	var table = [req.body.email, md5(req.body.password)];
 	query = mysql.format(query, table);

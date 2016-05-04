@@ -239,6 +239,25 @@
  */
 
 /**
+ * @api {post} /user/:id/animes 7) Link Anime to User
+ * @apiName Link Anime to User
+ * @apiGroup 2) User
+ *
+ * @apiParam {String} _token Token provide by the API.
+ * @apiParam {Number} animeId Id of the Anime.
+ *
+ * @apiSuccess {Boolean} Error State of the request.
+ * @apiSuccess {String} Message Message of the request.
+ *
+ * @apiSuccessExample Success-Response:
+ *   {
+ *     "Error": false,
+ *     "Message": "Anime link to you."
+ *   }
+ *
+ */
+
+/**
  * @api {get} /animes 1) Get all Animes
  * @apiName Get all Animes
  * @apiGroup 3) Anime
@@ -389,6 +408,207 @@
  *   {
  *     "Error": false,
  *     "Message": "Deleted the anime with id 2"
+ *   }
+ *
+ * @apiError AnimeNotFound The anime wasn't found.
+ *
+ * @apiErrorExample Error-Response:
+ *   {
+ *     "Error": true,
+ *     "Message": "Error executing MySQL query"
+ *   }
+ *
+ */
+
+/**
+ * @api {get} /animes/:id/animeItems 6) Get AnimeItem with AnimeId
+ * @apiName Get AnimeItem with AnimeId
+ * @apiGroup 3) Anime
+ *
+ * @apiSuccess {Boolean} Error State of the request.
+ * @apiSuccess {String} Message Message of the request.
+ * @apiSuccess {Object} AnimeItems Item of the Anime.
+ * @apiSuccess {String} AnimeItems.AnimeTitle Title of the Anime.
+ * @apiSuccess {String} AnimeItems.ItemTitle Title of the Item.
+ * @apiSuccess {Number} AnimeItems.Number Number of the Episode.
+ * @apiSuccess {Number} AnimeItems.NbTotal Number total of Episode.
+ * @apiSuccess {Boolean} AnimeItems.Watch Have watch this Episode.
+ * @apiSuccess {Boolean} AnimeItems.Own Own this Episode.
+ *
+ * @apiSuccessExample Success-Response:
+ *   {
+ *     "Error": false,
+ *     "Message": "Deleted the anime with id 2"
+ *     "AnimeItems": [
+ *       {
+ *         "AnimeTitle": "Title of the Anime",
+ *         "ItemTitle": "Title of the Episode",
+ *         "Number" : 2,
+ *         "NbTotal": 27,
+ *         "Watch": 1,
+ *         "Own": 0
+ *       },
+ *       .......
+ *     ]
+ *   }
+ *
+ * @apiError AnimeNotFound The anime wasn't found.
+ *
+ * @apiErrorExample Error-Response:
+ *   {
+ *     "Error": true,
+ *     "Message": "Error executing MySQL query"
+ *   }
+ *
+ */
+
+/**
+ * @api {get} /animeItems 1) Get All AnimeItem.
+ * @apiName Get all AnimeItem
+ * @apiGroup 4) AnimeItem
+ *
+ * @apiSuccess {Boolean} Error State of the request.
+ * @apiSuccess {String} Message Message of the request.
+ * @apiSuccess {Object} Anime_Items All the Items.
+ * @apiSuccess {Number} Anime_Items.Id Id of the AnimeItem.
+ * @apiSuccess {String} Anime_Items.Title Title of the AnimeItem.
+ * @apiSuccess {Number} Anime_Items.Number Numero of the episode.
+ * @apiSuccess {Boolean} Anime_Items.Own Own the episode.
+ * @apiSuccess {Boolean} Anime_Items.Watch Have watch this episode.
+ * @apiSuccess {Number} Anime_Items.AnimeId The anime of this episode.
+ *
+ * @apiSuccessExample Success-Response:
+ *   {
+ *     "Error": false,
+ *     "Message": "Succes",
+ *     "Anime_Items": [
+ *       {
+ *         "Id": 1,
+ *         "Title": "Rebirth",
+ *         "Number": 1,
+ *         "Own": 1,
+ *         "Watch": 1,
+ *         "AnimeId": 1
+ *       },
+ *       .....
+ *     ]
+ *   }
+ *
+ */
+
+/**
+ * @api {get} /animeItems/:id 2) Get AnimeItem by Id.
+ * @apiName Get AnimeItem by Id
+ * @apiGroup 4) AnimeItem
+ *
+ * @apiSuccess {Boolean} Error State of the request.
+ * @apiSuccess {String} Message Message of the request.
+ * @apiSuccess {Object} Anime_Item All the Items.
+ * @apiSuccess {Number} Anime_Items.Id Id of the AnimeItem.
+ * @apiSuccess {String} Anime_Items.Title Title of the AnimeItem.
+ * @apiSuccess {Number} Anime_Items.Number Numero of the episode.
+ * @apiSuccess {Boolean} Anime_Items.Own Own the episode.
+ * @apiSuccess {Boolean} Anime_Items.Watch Have watch this episode.
+ * @apiSuccess {Number} Anime_Items.AnimeId The anime of this episode.
+ *
+ * @apiSuccessExample Success-Response:
+ *   {
+ *     "Error": false,
+ *     "Message": "Succes",
+ *     "Anime_Item": [
+ *       {
+ *         "Id": 1,
+ *         "Title": "Rebirth",
+ *         "Number": 1,
+ *         "Own": 1,
+ *         "Watch": 1,
+ *         "Watch": 1,
+ *         "AnimeId": 1
+ *       }
+ *     ]
+ *   }
+ *
+ */
+
+/**
+ * @api {post} /animeItems 3) Create an AnimeItem
+ * @apiName  Create an AnimeItem
+ * @apiGroup 4) AnimeItem
+ *
+ * @apiParam {string} _token Token provide by the API.
+ * @apiParam {Number} userId Id of the User.
+ * @apiParam {String} title Title of the episode.
+ * @apiParam {Number} number Number of the episode.
+ * @apiParam {Boolean} own Owned the episode.
+ * @apiParam {Boolean} Watch Have watch the episode.
+ * @apiParam {Number} animeId Id of the Anime.
+ *
+ * @apiSuccess {Boolean} Error State of the request.
+ * @apiSuccess {String} Message Message of the request.
+ *
+ * @apiSuccessExample Success-Response:
+ *   {
+ *     "Error": false,
+ *     "Message": "Anime Item added !"
+ *   }
+ *
+ * @apiError UserNotFound The id of the User was not found.
+ *
+ * @apiErrorExample Error-Response:
+ *   {
+ *     "Error": true,
+ *     "Message": "Error excecuting MySQL query"
+ *   }
+ *
+ */
+
+/**
+ * @api {put} /animeItems 4) Update an AnimeItem
+ * @apiName Update an AnimeItem
+ * @apiGroup 4) AnimeItem
+ *
+ * @apiParam {String} _token Token provide by the API.
+ * @apiParam {Number} userId Id of the User.
+ * @apiParam {String} title (Optional) Title of the episode.
+ * @apiParam {Number} number (Optional) Number of the episode.
+ * @apiParam {Boolean} own (Optional) Owned the episode.
+ * @apiParam {Boolean} Watch Have watch the episode.
+ * @apiParam {Number} animeId Id of the Anime.
+ *
+ * @apiSuccess {Boolean} Error State of the request.
+ * @apiSuccess {String} Message Message of the request.
+ *
+ * @apiSuccessExample Success-Response:
+ *   {
+ *     "Error": false,
+ *     "Message"; "Updated Anime"
+ *   }
+ *
+ * @apiError AnimeNotFound The anime wasn't found.
+ *
+ * @apiErrorExample Error-Response:
+ *   {
+ *     "Error": true,
+ *     "Message": "Error executing MySQL query"
+ *   }
+ *
+ */
+
+/**
+ * @api {delete} /animeItems/:id 5) Delete an AnimeItem
+ * @apiName Delete an AnimeItem
+ * @apiGroup 4) AnimeItem
+ *
+ * @apiParam {String} _token Token provide by the API.
+ * @apiParam {Number} userId Id of the User.
+ *
+ * @apiSuccess {Boolean} Error State of the request.
+ * @apiSuccess {String} Message Message of the request.
+ *
+ * @apiSuccessExample Success-Response:
+ *   {
+ *     "Error": false,
+ *     "Message": "Deleted the animeItem with id 2"
  *   }
  *
  * @apiError AnimeNotFound The anime wasn't found.
