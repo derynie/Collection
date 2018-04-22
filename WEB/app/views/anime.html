@@ -1,0 +1,29 @@
+<div class="anime-container" ng-controller="AnimeCtrl as vm">
+  <ul>
+    <li ng-repeat="anime in vm.animes">
+      <div class="row" style="height: 300px;">
+        <div class="col-md-4">
+          <img ng-src="{{anime.Picture}}" style="width: 200px; height: 300px; vertical-align: middle">
+        </div>
+
+        <div class="col-md-8" style="height: 300px; overflow: auto;">
+          <h4 ng-bind="anime.Title"></h4>
+          <p ng-bind="anime.Description"></p>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="row">
+    <div class="col-md-9 col-md-offset-3">
+      <ul uib-pagination total-items="vm.totalPages" ng-model="vm.currentPage" ng-change="vm.pageChanged()" items-per-page="5" max-size="10" class="pagination-sm" boundary-links="true" rotate="false"></ul>
+    </div>
+  </div>
+
+  <!--
+  <div class="row">
+    <div class="col-md-9 col-md-offset-3">
+      <ul uib-pagination total-items="totalPages" ng-model="currentPage" ng-change="pageChanged()" items-per-page="5" max-size="10" class="pagination-sm" boundary-links="true" rotate="false"></ul>
+    </div>
+  </div>
+-->
+</div>

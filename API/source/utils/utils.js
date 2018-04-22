@@ -14,11 +14,12 @@ exports.parseIntAndNull = function(number)
 exports.toString = function(string)
 {
     string = string.replace(/"/g, "\\\"");
-    string = "\"" + string + "\"";
+    //string = "\"" + string + "\"";
     return string;
 }
 
 var getToken = function(connection, id, callback) {
+    console.log("id = ", parseInt(id));
     var query = "SELECT Token FROM User WHERE Id = " + parseInt(id);
     query = mysql.format(query, null);
     connection.query(query, function(err, rows) {

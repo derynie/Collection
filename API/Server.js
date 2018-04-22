@@ -3,13 +3,14 @@ var mysql   = require("mysql");
 var bodyParser  = require("body-parser");
 var md5 = require('MD5');
 var app  = express();
+var cors = require('cors');
 
-var animeItem = require("./controllers/animeItem.js");
-var anime = require("./controllers/anime.js");
-var movie = require("./controllers/movie.js");
-var userAnimeItem = require("./controllers/user_animeItem.js");
-var userAnime = require("./controllers/user_anime.js");
-var user = require("./controllers/user.js");
+var animeItem = require("./source/controllers/animeItem.js");
+var anime = require("./source/controllers/anime.js");
+var movie = require("./source/controllers/movie.js");
+var userAnimeItem = require("./source/controllers/user_animeItem.js");
+var userAnime = require("./source/controllers/user_anime.js");
+var user = require("./source/controllers/user.js");
 
 var uuid = require('node-uuid');
 var secretKey = uuid.v4();
@@ -43,6 +44,7 @@ REST.prototype.connectMysql = function() {
 
 REST.prototype.configureExpress = function(connection) {
     var self = this;
+    app.use(cors({origin: '*'}));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     var router = express.Router();
@@ -58,8 +60,8 @@ REST.prototype.configureExpress = function(connection) {
 
 REST.prototype.startServer = function() {
     
-    app.listen(3000,function(){
-        console.log("All right ! I am alive at Port 3000.");
+    app.listen(3004,function(){
+        console.log("All right ! I am alive at Port 3004.");
     });
 }
 
