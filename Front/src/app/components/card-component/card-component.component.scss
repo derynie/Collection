@@ -1,0 +1,18 @@
+.textEllepsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 18px;     /* fallback */
+  max-height: 100%;      /* fallback */
+  -webkit-box-orient: vertical;
+}
+
+.example-card {
+  max-width: 90%;
+  min-width: 90%;
+
+  img {
+    max-height: 60%;
+    min-height: 35%;
+  }
+}

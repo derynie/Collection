@@ -1,0 +1,51 @@
+
+
+
+<!-- HOMEPAGE
+<mat-card style="height: 600px;">
+  <mat-card-header>
+    <mat-card-title>Anime</mat-card-title>
+  </mat-card-header>
+
+  <div style="display: flex; height: 95%;">
+    <button mat-icon-button (click)="leftScroll()" style="margin-top: 15%">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+
+    <div class="card-deck-container outer_container">
+
+      <span *ngFor="let anime of animes; let index = index" class="example-card" style="max-height: 100%;" [ngStyle]="{'margin-left': index > 0 ? '10px': '0'}">
+
+        <app-card-component [data]="anime" style="height: 90%;"></app-card-component>
+
+      </span>
+
+    </div>
+
+    <button mat-icon-button (click)="rightScroll()" style="margin-top: 15%">
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+
+  </div>
+
+</mat-card>
+-->
+
+<div style="width: 80%; margin-left: 10%;">
+<mat-grid-list [cols]="4" [gutterSize]="'32px'">
+  <mat-grid-tile *ngFor="let anime of animes; let index = index">
+
+    <mat-card style="width: 100%; height: 85%;">
+      <mat-card-header>
+        <mat-card-title style="font-size: 1rem;">{{anime.title}}</mat-card-title>
+        <mat-card-subtitle>{{ anime.dates }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content style="height: 85%; width: 100%; margin: 0 15px;">
+        <div class="img" [ngStyle]="{'background-image': 'url(' + anime.picture + ')'}"></div>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-grid-tile>
+</mat-grid-list>
+</div>

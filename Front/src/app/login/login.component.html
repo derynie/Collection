@@ -1,0 +1,41 @@
+<div style="text-align: center; width: 100%">
+  <div style="display: inline-block; width: 50%">
+
+    <mat-card style="margin-top: 2rem; text-align: center;">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="userForm" (submit)="saveUser()">
+
+          <div style="display: flex; flex-direction: column;">
+            <mat-form-field class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" placeholder="Email" name="email" id="email" required>
+              <mat-error *ngIf="userForm.controls.email.invalid">
+                {{userForm.controls['email'].hasError('required') ? 'You must enter a value' :
+                userForm.controls['email'].hasError('email') ? 'Not a valid email' :
+                  ''}}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" placeholder="Password" name="password" id="password" [type]="hide ? 'password' : 'text'" required>
+              <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error *ngIf="userForm.controls.password.invalid">
+                {{userForm.controls['password'].hasError('required') ? 'You must enter a value' :
+                userForm.controls['password'].hasError('minlength') ? 'Password length must be 6 character at least' : ''}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <button type="submit" [disabled]="!userForm.valid">Submit</button>
+          <a style="float: right; cursor: pointer;" routerLink="/register">Register</a>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+
+  </div>
+</div>
