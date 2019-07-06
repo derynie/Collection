@@ -2,68 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bf7b061-0bf0-42da-9e4e-9662a2f8b4f2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api/controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/routes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/anime.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/user.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/anime.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/dbConnection.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/user.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/anime/anime.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/anime/anime.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/anime/anime.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/anime/anime.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/anime/anime.resources.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/anime/anime.route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/anime/anime.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/anime/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/components/card-component/card-component.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/components/card-component/card-component.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/components/card-component/card-component.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/components/card-component/card-component.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/components/card-component/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/home/home.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/home/home.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/home/home.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/home/home.route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/home/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/login/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/login/login.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/login/login.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/login/login.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/login/login.resources.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/login/login.route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/login/login.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/register/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/register/register.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/register/register.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/register/register.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/register/register.resources.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/register/register.route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/register/register.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/shared/models/anime.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/shared/models/user.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/shared/user.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/shared/user.resources.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/shared/user.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/translate/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/translate/lang-en.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/translate/lang-fr.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/translate/translate.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/translate/translate.pipe.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/translate/translate.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/translate/translations.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/utils/control-messages.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/utils/error-handlers.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/utils/http-interceptor.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/utils/utils.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front/src/app/utils/validation.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/.idea/API.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../API/.idea/API.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/.idea/libraries/API_node_modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BDD/scriptCreateBddWithData.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BDD/scriptCreateBddWithData.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test2vue/src/pages/Anime.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WEB/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WEB/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test2vue/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../test2vue/src/pages/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test2vue/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/../test2vue/src/router/router.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -107,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/api/routes.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -125,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/services/user.service.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
-              <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -203,7 +146,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -230,11 +172,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WEB" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test2vue" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -274,14 +217,16 @@
       <workItem from="1546746984458" duration="916000" />
       <workItem from="1546748435049" duration="1401000" />
       <workItem from="1546915507081" duration="1267000" />
+      <workItem from="1562422219779" duration="1265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36942000" />
+    <option name="totallyTimeSpent" value="38207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18797815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -337,7 +282,7 @@
     <entry file="file://$PROJECT_DIR$/api/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -351,7 +296,7 @@
     <entry file="file://$PROJECT_DIR$/services/user.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
         </state>
       </provider>
     </entry>
