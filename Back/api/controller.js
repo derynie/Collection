@@ -20,7 +20,6 @@ var controllers = {
         })
     },
     register: function (req, res) {
-        console.log(req);
         user.register(req, res, function (err, dist) {
             if (err)
                 res.send(err);

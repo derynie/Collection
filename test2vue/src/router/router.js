@@ -20,6 +20,7 @@ export const routes = [
   { path: "/", component: Home },
   { path: "/404", component: NotFound },
   { path: "/Animes", component: Animes, children: [
-      { path: "/:id", component: Anime}
+
     ] },
+    { path: "/Animes/:id", component: Anime},
 ];

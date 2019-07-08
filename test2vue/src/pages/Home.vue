@@ -1,6 +1,6 @@
 <template>
   <div>
-    Best Animes:
+      <p>Best <router-link :to="`/Animes`">Animes</router-link></p>
     <b-card-group  class="animated fadeIn " deck >
       <b-card  v-for="(anime, index) in animes" :key="index"
                style="max-height: 400px; min-height: 400px;"
@@ -13,9 +13,6 @@
         <h4 class="card-title">
           <router-link :to="`/Animes/${anime['Id']}`">{{ anime['Title'] }}</router-link>
         </h4>
-        <p class="card-text">
-          {{ anime['Description'] }}
-        </p>
       </b-card>
     </b-card-group>
 
@@ -32,13 +29,10 @@ export default {
   data() {
     return {
       animes: [],
-      slide: 0,
-      sliding: null,
       paginatedAnimes:[],
       nbPages:0,
       nbRowPerPage:4,
       currentPageIndex:0
-
     }
   },
   methods:{

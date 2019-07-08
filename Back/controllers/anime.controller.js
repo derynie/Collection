@@ -23,7 +23,7 @@ var animeController = {
           "LEFT JOIN  Link_Anime_Translation ON Link_Anime_Translation.AnimeId = Anime.Id " +
           "LEFT JOIN Translation ON Link_Anime_Translation.TranslationId = Translation.Id " +
           "LEFT JOIN Language ON Translation.LanguageId = Language.Id " +
-          "WHERE Language.Label = '" + req.query.lang +
+          "WHERE Language.Label = '" + 'FR' /*req.query.lang*/ +
           "' ORDER BY Anime.Id ASC " +
           ") AS R1 " +
           "ON R1.Id = R2.Id " +
